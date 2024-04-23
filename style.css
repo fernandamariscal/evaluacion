@@ -1,0 +1,16 @@
+/* Cambiar color de fondo de las pestañas */
+.nav-tabs .nav-link {
+    background-color: #b3f1cb; /* Color de fondo de las pestañas */
+    color: #201b1b; /* Color del texto de las pestañas */
+}
+
+/* Cambiar color de fondo de las pestañas activas */
+.nav-tabs .nav-link.active {
+    background-color: #52da9a; /* Color de fondo de las pestañas activas */
+}
+
+/* Cambiar color de fondo del contenido de las pestañas */
+.tab-content {
+    background-color: #f8f9fa; /* Color de fondo del contenido de las pestañas */
+    padding: 20px;
+}

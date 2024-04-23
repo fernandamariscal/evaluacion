@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calificaciones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><i class="bi bi-bar-chart-line"></i> Calificaciones</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="maestro.html"><i class="bi bi-arrow-return-left"></i> Volver</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-box-arrow-right"></i> Cerrar sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Pestañas -->
+    <ul class="nav nav-tabs justify-content-center mt-4">
+        <li class="nav-item">
+            <a class="nav-link active" href="#evaluacion" data-bs-toggle="tab">Evaluación</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#consulta" data-bs-toggle="tab">Consultar</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#extraordinario" data-bs-toggle="tab">Extraordinario</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#insumos" data-bs-toggle="tab">Insumos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#reporte" data-bs-toggle="tab">Reporte Final</a>
+        </li>
+    </ul>
+    
+    <!-- Contenido de las pestañas -->
+    <div class="tab-content mt-4">
+        <div class="tab-pane fade show active" id="evaluacion">
+            <div class="container mt-3">
+                <h3>Subir Archivo de Alumnos</h3>
+                <input type="file" id="archivoAlumnos" accept=".xlsx, .xls">
+                <button class="btn btn-primary mt-2" id="btnSubirArchivo"><i class="bi bi-file-earmark-arrow-up"></i> Subir Archivo</button>
+            </div>
+
+            <!-- Tablas -->
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Información Básica</h3>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>NRC</th>
+                                        <th>UAC</th>
+                                        <th>Clase</th>
+                                        <th>Maestro</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tablaInformacionBasica">
+                                    <tr>
+                                        <td>TEXT</td>
+                                        <td>TEXT</td>
+                                        <td>TEXT</td>
+                                        <td>TEXT</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <!-- Asignación de Prácticas -->
+                        <div class="container mt-3">
+                            <h3 id="tituloPracticas">Asignación de Prácticas</h3>
+                            <div class="table-responsive">
+                                <table class="table table-sm table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Atributo</th>
+                                            <th>No. Prácticas</th>
+                                            <th>Ponderación</th>
+                                            <th></th> <!-- Agregamos una columna vacía para el botón de agregar -->
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tablaAsignacionPracticas">
+                                        <tr>
+                                            <td><input type="text" class="form-control atributo-input" style="border: none; background-color: transparent;"></td>
+                                            <td><input type="number" class="form-control practicas-input" style="border: none; background-color: transparent;" value="0"></td>
+                                            <td><input type="number" class="form-control ponderacion-input" style="border: none; background-color: transparent;" value="0"></td>
+                                            <td><button class="btn btn-primary btn-sm" id="btnAgregarPractica"><i class="bi bi-plus"></i></button></td> <!-- Botón de agregar con el icono "+" -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <button class="btn btn-primary btn-sm" type="button" id="btnGuardar"><i class="bi bi-save"></i> Guardar</button>
+                            </div>
+                        </div>
+                        <!-- Fin de Asignación de Prácticas -->
+
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Datos de los Alumnos -->
+            <div class="container mt-3">
+                <h3>Datos de los Alumnos</h3>
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="tablaAlumnos">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Prácticas Realizadas</th>
+                                <th>Puntos Obtenidos</th>
+                            </tr>
+                        </thead>
+                        <tbody id="datosAlumnos">
+                            <!-- Aquí se mostrarán los datos de los alumnos después de subir el archivo -->
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Botón Guardar -->
+                <div class="d-grid gap-2 col-6 mx-auto mt-3">
+                    <button class="btn btn-primary" type="button" id="btnGuardarAlumnos"><i class="bi bi-save"></i> Guardar</button>
+                </div>
+                <!-- Fin Botón Guardar -->
+            </div>
+            <!-- Fin de Datos de los Alumnos -->
+        </div>
+        <div class="tab-pane fade" id="consulta">
+            <!-- Contenido de Consulta -->
+        </div>
+        <div class="tab-pane fade" id="extraordinario">
+            <!-- Contenido de Extraordinario -->
+        </div>
+        <div class="tab-pane fade" id="insumos">
+            <!-- Contenido de Insumos -->
+        </div>
+        <div class="tab-pane fade" id="reporte">
+            <!-- Contenido de Reporte Final -->
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
+    <script>
+        // Función para calcular los puntos obtenidos en función del número de prácticas realizadas y la ponderación
+        function calcularPuntos(practicasRealizadas, ponderacion, maxPracticas) {
+            return (practicasRealizadas / maxPracticas) * ponderacion;
+        }
+
+        document.getElementById('btnSubirArchivo').addEventListener('click', function() {
+            var inputFile = document.getElementById('archivoAlumnos').files[0];
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                var data = new Uint8Array(e.target.result);
+                var workbook = XLSX.read(data, { type: 'array' });
+                var sheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[sheetName];
+                var alumnos = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+                console.log("Archivo cargado con éxito");
+
+                var tablaAlumnos = document.getElementById('tablaAlumnos');
+                alumnos.forEach(function(alumno, index) {
+                    if (index !== 0) { // Ignorar la primera fila (encabezados)
+                        var row = tablaAlumnos.insertRow();
+                        row.insertCell(0).textContent = alumno[0]; // Código
+                        row.insertCell(1).textContent = alumno[1]; // Nombre
+
+                        // Crear campo de entrada de tipo número para Prácticas Realizadas
+                        var practicasInput = document.createElement('input');
+                        practicasInput.type = 'number';
+                        practicasInput.classList.add('form-control');
+                        practicasInput.value = alumno[2] || 0; // Valor predeterminado es 0 si no hay datos
+                        row.insertCell(2).appendChild(practicasInput);
+
+                        // Crear campo de texto para Puntos Obtenidos
+                        var puntosObtenidosCell = row.insertCell(3);
+                        puntosObtenidosCell.textContent = calcularPuntos(practicasInput.value, 0, document.querySelector('.practicas-input').value); // Inicialmente se establece en 0
+                        practicasInput.addEventListener('input', function() {
+                            puntosObtenidosCell.textContent = calcularPuntos(practicasInput.value, document.querySelector('.ponderacion-input').value, document.querySelector('.practicas-input').value);
+                        });
+                    }
+                });
+            };
+
+            reader.readAsArrayBuffer(inputFile);
+        });
+
+        document.getElementById('btnGuardar').addEventListener('click', function() {
+            console.log("Guardando datos...");
+            // Obtener todos los campos de entrada
+            var atributoInput = document.querySelector('.atributo-input');
+            var practicasInput = document.querySelector('.practicas-input');
+            var ponderacionInput = document.querySelector('.ponderacion-input');
+
+            // Agregar el atributo readonly a los campos de entrada
+            atributoInput.setAttribute('readonly', 'readonly');
+            practicasInput.setAttribute('readonly', 'readonly');
+            ponderacionInput.setAttribute('readonly', 'readonly');
+
+            // Cambiar el estilo de los campos de entrada para mostrar que son de solo lectura
+            atributoInput.style.backgroundColor = '#f0f0f0';
+            practicasInput.style.backgroundColor = '#f0f0f0';
+            ponderacionInput.style.backgroundColor = '#f0f0f0';
+
+            // Deshabilitar el botón después de hacer clic
+            //document.getElementById('btnGuardar').setAttribute('disabled', 'disabled');
+        });
+        document.getElementById('btnGuardarAlumnos').addEventListener('click', function() {
+            // Código para guardar los datos de los alumnos
+            var tablaAlumnos = document.getElementById('tablaAlumnos');
+            var rows = tablaAlumnos.rows;
+            for (var i = 1; i < rows.length; i++) {
+                for (var j = 2; j <= 4; j++) {
+                    var cell = rows[i].cells[j];
+                    cell.contentEditable = false; // Hacer las celdas no editables
+                }
+            }
+            document.getElementById('btnGuardarAlumnos').disabled = true; // Deshabilitar el botón después de guardar
+        });
+        var numPracticas = 1; // Inicializamos el contador de prácticas en 1
+
+        // Función para agregar prácticas
+        function agregarPracticas(numPracticas) {
+            // Vaciamos las filas de la tabla
+            var tablaAsignacionPracticas = document.getElementById('tablaAsignacionPracticas');
+            tablaAsignacionPracticas.innerHTML = '';
+
+            // Creamos una nueva fila con los campos necesarios
+            var nuevaFila = document.createElement('tr');
+            nuevaFila.innerHTML = `
+                <td><input type="text" class="form-control atributo-input" style="border: none; background-color: transparent;"></td>
+                <td><input type="number" class="form-control practicas-input" style="border: none; background-color: transparent;" value="0"></td>
+                <td><input type="number" class="form-control ponderacion-input" style="border: none; background-color: transparent;" value="0"></td>
+                <td><button class="btn btn-primary btn-sm btnAgregarPractica"><i class="bi bi-plus"></i></button></td>
+            `;
+
+            // Añadimos la nueva fila a la tabla
+            tablaAsignacionPracticas.appendChild(nuevaFila);
+
+            // Actualizamos el título de la tabla
+            var tituloPracticas = document.getElementById('tituloPracticas');
+            tituloPracticas.textContent = numPracticas + "° Asignación de Prácticas";
+        }
+
+        // Llamamos a la función de agregar prácticas 10 veces
+        for (var i = 1; i <= 10; i++) {
+            agregarPracticas(i);
+        }
+
+        // Escuchamos el clic en el botón de agregar prácticas
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('btnAgregarPractica')) {
+                // Incrementamos el contador de prácticas
+                numPracticas++;
+
+                // Agregamos prácticas nuevamente
+                agregarPracticas(numPracticas);
+            }
+        });
+    </script>
+</body>
+</html>
