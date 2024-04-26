@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/fernandamariscal/evaluacion/issues"
   },
-  "homepage": "https://github.com/fernandamariscal/evaluacion#readme"
+  "homepage": "https://github.com/fernandamariscal/evaluacion#readme",
+  "dependencies": {
+    "jquery": "^3.7.1"
+  }
 }
