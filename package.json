@@ -1,0 +1,19 @@
+{
+  "name": "prepa3",
+  "version": "1.0.0",
+  "description": "Este es el repositorio oficial del proyecto de la prepa 3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fernandamariscal/evaluacion.git"
+  },
+  "author": "Fernanda Mariscal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fernandamariscal/evaluacion/issues"
+  },
+  "homepage": "https://github.com/fernandamariscal/evaluacion#readme"
+}
